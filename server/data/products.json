@@ -1,0 +1,122 @@
+[
+  {
+    "id": "kurti-zoya",
+    "name": "Zoya Straight Kurti",
+    "category": "kurtis",
+    "categoryLabel": "Kurtis",
+    "fabric": "Pure lawn · Thread embroidery on neckline",
+    "price": 3200,
+    "badge": "New",
+    "gradient": ["#EE7B4D", "#D6357E"]
+  },
+  {
+    "id": "kurti-amaya",
+    "name": "Amaya A-Line Kurti",
+    "category": "kurtis",
+    "categoryLabel": "Kurtis",
+    "fabric": "Cotton blend · Side pockets · Everyday cut",
+    "price": 2850,
+    "badge": null,
+    "gradient": ["#C79A56", "#EE7B4D"]
+  },
+  {
+    "id": "kurti-rania",
+    "name": "Rania Angrakha Kurti",
+    "category": "kurtis",
+    "categoryLabel": "Kurtis",
+    "fabric": "Rayon · Wrap-style with tie detail",
+    "price": 3600,
+    "badge": null,
+    "gradient": ["#5C2440", "#EE7B4D"]
+  },
+  {
+    "id": "suit-noor",
+    "name": "Noor 3-Piece Suit",
+    "category": "pakistani-suits",
+    "categoryLabel": "Pakistani Suits",
+    "fabric": "Chiffon dupatta · Embroidered shirt & trouser",
+    "price": 7900,
+    "badge": "Bestseller",
+    "gradient": ["#5C2440", "#D6357E"]
+  },
+  {
+    "id": "suit-sana",
+    "name": "Sana Chikankari Suit",
+    "category": "pakistani-suits",
+    "categoryLabel": "Pakistani Suits",
+    "fabric": "Lawn · Hand chikankari · Straight trouser",
+    "price": 6400,
+    "badge": null,
+    "gradient": ["#3A0F26", "#D6357E"]
+  },
+  {
+    "id": "suit-alishba",
+    "name": "Alishba Karandi Suit",
+    "category": "pakistani-suits",
+    "categoryLabel": "Pakistani Suits",
+    "fabric": "Winter karandi · Embroidered shawl included",
+    "price": 8500,
+    "badge": null,
+    "gradient": ["#EE7B4D", "#5C2440"]
+  },
+  {
+    "id": "lawn-meher",
+    "name": "Meher Printed Lawn (Unstitched)",
+    "category": "lawn",
+    "categoryLabel": "Lawn Collection",
+    "fabric": "3-piece · Digital print · Cotton lawn",
+    "price": 4100,
+    "badge": "Summer",
+    "gradient": ["#C79A56", "#EE7B4D"]
+  },
+  {
+    "id": "lawn-fajar",
+    "name": "Fajar Lawn Kurti Set",
+    "category": "lawn",
+    "categoryLabel": "Lawn Collection",
+    "fabric": "2-piece · Block print · Ready to wear",
+    "price": 3950,
+    "badge": null,
+    "gradient": ["#EE7B4D", "#C79A56"]
+  },
+  {
+    "id": "party-mahira",
+    "name": "Mahira Sequin Kurti",
+    "category": "party-wear",
+    "categoryLabel": "Party Wear",
+    "fabric": "Georgette · Sequin bodice · Flared hem",
+    "price": 9800,
+    "badge": "Occasion",
+    "gradient": ["#3A0F26", "#5C2440"]
+  },
+  {
+    "id": "party-aiza",
+    "name": "Aiza Velvet Suit",
+    "category": "party-wear",
+    "categoryLabel": "Party Wear",
+    "fabric": "Velvet · Zari embroidery · Winter formal",
+    "price": 12500,
+    "badge": null,
+    "gradient": ["#D6357E", "#3A0F26"]
+  },
+  {
+    "id": "bridal-rukhsar",
+    "name": "Rukhsar Walima Formal",
+    "category": "bridal",
+    "categoryLabel": "Bridal Edit",
+    "fabric": "Organza · Full zari & dabka work",
+    "price": 42000,
+    "badge": "Bridal",
+    "gradient": ["#C79A56", "#3A0F26"]
+  },
+  {
+    "id": "bridal-farah",
+    "name": "Farah Mehndi Lehenga Set",
+    "category": "bridal",
+    "categoryLabel": "Bridal Edit",
+    "fabric": "Raw silk · Hand embroidery · Dupatta included",
+    "price": 38500,
+    "badge": null,
+    "gradient": ["#5C2440", "#C79A56"]
+  }
+]

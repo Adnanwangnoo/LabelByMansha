@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collections — Label by Mansha</title>
+<meta name="description" content="Browse kurtis, Pakistani suits, lawn prints, party wear and bridal formals from Label by Mansha.">
+<link rel="icon" href="images/logo.png" type="image/png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="brand">
+      <img src="images/logo.png" alt="Label by Mansha">
+      <span class="brand-word">Mansha<span>Label by</span></span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="collections.html" class="active">Collections</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html#whatsapp" class="nav-cta">Order on WhatsApp</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">The full edit</span>
+    <h1>Every piece, one place to find it.</h1>
+    <p>Filter by what the day calls for. Every listing ships made-to-measure — send your size chart at checkout or over WhatsApp.</p>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="filter-row">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="kurtis">Kurtis</button>
+      <button class="filter-btn" data-filter="pakistani-suits">Pakistani Suits</button>
+      <button class="filter-btn" data-filter="lawn">Lawn</button>
+      <button class="filter-btn" data-filter="party-wear">Party Wear</button>
+      <button class="filter-btn" data-filter="bridal">Bridal Edit</button>
+    </div>
+
+    <div class="product-grid" id="product-grid" aria-busy="true"></div>
+  </div>
+</section>
+
+<section class="section-tight" style="background: var(--blush);">
+  <div class="wrap">
+    <div class="cta-band" style="background: var(--plum);">
+      <div>
+        <h2>Can't find your size in a listing?</h2>
+        <p>Every design here can be tailored to your measurements at no extra cost. Just tell us the piece name.</p>
+      </div>
+      <a href="contact.html#whatsapp" class="btn btn-primary">Message your measurements</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand" style="margin-bottom: 6px;">
+          <img src="images/logo.png" alt="Label by Mansha" style="height:40px;">
+          <span class="brand-word">Mansha<span>Label by</span></span>
+        </div>
+        <p>Kurtis, Pakistani suits and lawn edits, cut and finished by hand for women who notice the details.</p>
+        <div class="social-row">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="Facebook">FB</a>
+          <a href="#" aria-label="TikTok">TT</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <a href="collections.html#kurtis">Kurtis</a>
+        <a href="collections.html#pakistani-suits">Pakistani Suits</a>
+        <a href="collections.html#lawn">Lawn Collection</a>
+        <a href="collections.html#party-wear">Party Wear</a>
+      </div>
+      <div class="footer-col">
+        <h4>Studio</h4>
+        <a href="about.html">Our story</a>
+        <a href="about.html#process">How we make it</a>
+        <a href="contact.html">Contact</a>
+        <a href="contact.html#faq">FAQs</a>
+      </div>
+      <div class="footer-col">
+        <h4>Reach us</h4>
+        <p>Mon–Sat, 11am–7pm</p>
+        <a href="tel:+920000000000">+92 000 0000000</a>
+        <a href="mailto:hello@labelbymansha.com">hello@labelbymansha.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Label by Mansha. All rights reserved.</span>
+      <span>Designed for women who read the label.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Quick enquiry modal — posts to /api/enquire -->
+<div class="modal" id="enquire-modal">
+  <div class="modal-backdrop" data-close-modal></div>
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="enquire-title">
+    <button type="button" class="modal-close" data-close-modal aria-label="Close">&times;</button>
+    <h3 id="enquire-title">Enquire about <span id="enquire-product-name">this piece</span></h3>
+    <p class="form-note" style="margin-top: 4px; margin-bottom: 20px;">Leave your name and number — we'll message you back with sizing and availability.</p>
+    <form id="enquire-form">
+      <input type="hidden" name="productId" id="enquire-product-id">
+      <div class="form-field" style="margin-bottom: 16px;">
+        <label for="enquire-name">Your name</label>
+        <input type="text" id="enquire-name" name="name" placeholder="Your name" required>
+      </div>
+      <div class="form-field" style="margin-bottom: 20px;">
+        <label for="enquire-phone">Phone / WhatsApp</label>
+        <input type="tel" id="enquire-phone" name="phone" placeholder="+92 ..." required>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Send enquiry</button>
+      <p class="form-note" id="enquire-status" style="margin-top: 14px;"></p>
+    </form>
+  </div>
+</div>
+
+<script src="js/nav.js"></script>
+<script src="js/products.js"></script>
+</body>
+</html>

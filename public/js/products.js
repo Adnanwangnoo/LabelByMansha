@@ -20,12 +20,14 @@
   function cardTemplate(p) {
     const [from, to] = p.gradient || ['#EE7B4D', '#D6357E'];
     const badge = p.badge ? `<span class="badge">${p.badge}</span>` : '';
+    const productImage = p.image ? `<img src="${p.image}" alt="${p.name}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">` : '';
     return `
       <div class="product-card" data-cat="${p.category}">
         <div class="product-media" style="--card-bg: linear-gradient(160deg, ${from}, ${to});">
-          <img class="pattern" src="images/floral-pattern.svg" alt="">
+          ${productImage}
+          <img class="pattern" src="images/floral-pattern.svg" alt="" style="position: relative; z-index: 1;">
           ${badge}
-          <span class="monogram">M</span>
+          <span class="monogram" style="position: relative; z-index: 1;">M</span>
         </div>
         <div class="product-info">
           <span class="cat">${p.categoryLabel}</span>

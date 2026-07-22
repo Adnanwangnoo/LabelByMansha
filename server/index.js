@@ -1,3 +1,4 @@
+const cors = require('cors');
 const express = require('express');
 const path = require('path');
 
@@ -6,7 +7,17 @@ const contactRouter = require('./routes/contact');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
+// app.use(cors({
+//   origin: 'https://labelbymansha.com'
+// }));
+app.use(cors({
+  origin: [
+    'https://labelbymansha.com',
+    'https://www.labelbymansha.com',
+    'http://localhost:3000',
+    'http://127.0.0.1:3000'
+  ]
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

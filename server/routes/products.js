@@ -3,14 +3,17 @@ const { readJSON } = require('../store');
 
 const router = express.Router();
 
-// GET /api/products?category=kurtis
+// GET /api/products?category=kashmiri-tilla  (or category=bestselling)
 router.get('/', (req, res) => {
   const products = readJSON('products.json', []);
   const { category } = req.query;
 
-  const filtered = category && category !== 'all'
-    ? products.filter((p) => p.category === category)
-    : products;
+  let filtered = products;
+  if (category === 'bestselling') {
+    filtered = products.filter((p) => p.bestseller === true);
+  } else if (category && category !== 'all') {
+    filtered = products.filter((p) => p.category === category);
+  }
 
   res.json({
     count: filtered.length,

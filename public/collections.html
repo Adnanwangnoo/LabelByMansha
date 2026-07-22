@@ -4,21 +4,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Collections — Label by Mansha</title>
-<meta name="description" content="Browse kurtis, Pakistani suits, lawn prints, party wear and bridal formals from Label by Mansha.">
+<meta name="description" content="Browse best sellers, wedding wear, Kashmiri tilla and dabka work suits from Label by Mansha.">
 <link rel="icon" href="images/logo.png" type="image/png">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+<div class="promo-strip">Use <strong>"MANSHA10"</strong> to avail a special discount sitewide</div>
+
 <header class="site-header">
   <div class="wrap">
+    <div class="header-side left">
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
     <a href="index.html" class="brand">
-      <img src="images/logo.png" alt="Label by Mansha">
+      <span class="brand-mark">
+        <img class="mandala" src="images/mandala.svg" alt="">
+        <img class="logo-img" src="images/logo.png" alt="Label by Mansha">
+      </span>
       <span class="brand-word">Mansha<span>Label by</span></span>
     </a>
-    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+
     <nav class="main-nav">
       <a href="index.html">Home</a>
       <a href="collections.html" class="active">Collections</a>
@@ -26,6 +35,16 @@
       <a href="contact.html">Contact</a>
       <a href="contact.html#whatsapp" class="nav-cta">Order on WhatsApp</a>
     </nav>
+
+    <div class="header-side right">
+      <a href="collections.html" class="icon-btn" aria-label="Search collections">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      </a>
+      <a href="contact.html#whatsapp" class="icon-btn" aria-label="Enquire / cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3h2l2.4 12.4a2 2 0 0 0 2 1.6h7.2a2 2 0 0 0 2-1.6L21 8H6"/><circle cx="10" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg>
+        <span class="count">0</span>
+      </a>
+    </div>
   </div>
 </header>
 
@@ -33,7 +52,7 @@
   <div class="wrap">
     <span class="eyebrow">The full edit</span>
     <h1>Every piece, one place to find it.</h1>
-    <p>Filter by what the day calls for. Every listing ships made-to-measure — send your size chart at checkout or over WhatsApp.</p>
+    <p>Filter by what the occasion calls for. Every listing ships made-to-measure — send your size chart at checkout or over WhatsApp.</p>
   </div>
 </section>
 
@@ -41,11 +60,10 @@
   <div class="wrap">
     <div class="filter-row">
       <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="kurtis">Kurtis</button>
-      <button class="filter-btn" data-filter="pakistani-suits">Pakistani Suits</button>
-      <button class="filter-btn" data-filter="lawn">Lawn</button>
-      <button class="filter-btn" data-filter="party-wear">Party Wear</button>
-      <button class="filter-btn" data-filter="bridal">Bridal Edit</button>
+      <button class="filter-btn" data-filter="bestselling">Best Selling</button>
+      <button class="filter-btn" data-filter="wedding">Wedding Collection</button>
+      <button class="filter-btn" data-filter="kashmiri-tilla">Kashmiri Tilla</button>
+      <button class="filter-btn" data-filter="dabka-work">Dabka Work</button>
     </div>
 
     <div class="product-grid" id="product-grid" aria-busy="true"></div>
@@ -54,7 +72,7 @@
 
 <section class="section-tight" style="background: var(--blush);">
   <div class="wrap">
-    <div class="cta-band" style="background: var(--plum);">
+    <div class="cta-band">
       <div>
         <h2>Can't find your size in a listing?</h2>
         <p>Every design here can be tailored to your measurements at no extra cost. Just tell us the piece name.</p>
@@ -72,19 +90,19 @@
           <img src="images/logo.png" alt="Label by Mansha" style="height:40px;">
           <span class="brand-word">Mansha<span>Label by</span></span>
         </div>
-        <p>Kurtis, Pakistani suits and lawn edits, cut and finished by hand for women who notice the details.</p>
+        <p>Wedding wear, Kashmiri tilla and dabka work, cut and finished by hand for women who notice the details.</p>
         <div class="social-row">
-          <a href="#" aria-label="Instagram">IG</a>
-          <a href="#" aria-label="Facebook">FB</a>
-          <a href="#" aria-label="TikTok">TT</a>
+          <a href="https://instagram.com/labelbymansha" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+          <a href="https://facebook.com/labelbymansha" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+          <a href="https://wa.me/916005418597" target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
         </div>
       </div>
       <div class="footer-col">
         <h4>Shop</h4>
-        <a href="collections.html#kurtis">Kurtis</a>
-        <a href="collections.html#pakistani-suits">Pakistani Suits</a>
-        <a href="collections.html#lawn">Lawn Collection</a>
-        <a href="collections.html#party-wear">Party Wear</a>
+        <a href="collections.html#bestselling">Best Selling</a>
+        <a href="collections.html#wedding">Wedding Collection</a>
+        <a href="collections.html#kashmiri-tilla">Kashmiri Tilla</a>
+        <a href="collections.html#dabka-work">Dabka Work</a>
       </div>
       <div class="footer-col">
         <h4>Studio</h4>
@@ -96,8 +114,9 @@
       <div class="footer-col">
         <h4>Reach us</h4>
         <p>Mon–Sat, 11am–7pm</p>
-        <a href="tel:+920000000000">+92 000 0000000</a>
+        <a href="https://wa.me/916005418597" target="_blank" rel="noopener">+91 60054 18597</a>
         <a href="mailto:hello@labelbymansha.com">hello@labelbymansha.com</a>
+        <p>Address: coming soon</p>
       </div>
     </div>
     <div class="footer-bottom">
@@ -122,13 +141,46 @@
       </div>
       <div class="form-field" style="margin-bottom: 20px;">
         <label for="enquire-phone">Phone / WhatsApp</label>
-        <input type="tel" id="enquire-phone" name="phone" placeholder="+92 ..." required>
+        <input type="tel" id="enquire-phone" name="phone" placeholder="+91 ..." required>
       </div>
       <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Send enquiry</button>
       <p class="form-note" id="enquire-status" style="margin-top: 14px;"></p>
     </form>
   </div>
 </div>
+
+<!-- WhatsApp floating button -->
+<a href="https://wa.me/916005418597" target="_blank" rel="noopener" class="whatsapp-fab" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.36 7.56L3 20l1.06-5.4A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8.5 10.5c.3 2 2.2 3.9 4.2 4.2"/></svg>
+</a>
+
+<!-- Bottom mobile tab bar -->
+<nav class="bottom-tabbar" aria-label="Primary">
+  <ul>
+    <li><a href="index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>
+      Home
+    </a></li>
+    <li><a href="contact.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+      Account
+    </a></li>
+    <li><a href="collections.html" class="active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      Shop
+    </a></li>
+    <li><a href="collections.html#bestselling">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>
+      Wishlist
+      <span class="count">0</span>
+    </a></li>
+    <li><a href="contact.html#whatsapp">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3h2l2.4 12.4a2 2 0 0 0 2 1.6h7.2a2 2 0 0 0 2-1.6L21 8H6"/><circle cx="10" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg>
+      Cart
+      <span class="count">0</span>
+    </a></li>
+  </ul>
+</nav>
 
 <script src="js/nav.js"></script>
 <script src="js/products.js"></script>

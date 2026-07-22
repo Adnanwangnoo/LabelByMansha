@@ -1,122 +1,101 @@
 [
   {
-    "id": "kurti-zoya",
-    "name": "Zoya Straight Kurti",
-    "category": "kurtis",
-    "categoryLabel": "Kurtis",
-    "fabric": "Pure lawn · Thread embroidery on neckline",
-    "price": 3200,
-    "badge": "New",
-    "gradient": ["#EE7B4D", "#D6357E"]
-  },
-  {
-    "id": "kurti-amaya",
-    "name": "Amaya A-Line Kurti",
-    "category": "kurtis",
-    "categoryLabel": "Kurtis",
-    "fabric": "Cotton blend · Side pockets · Everyday cut",
-    "price": 2850,
-    "badge": null,
-    "gradient": ["#C79A56", "#EE7B4D"]
-  },
-  {
-    "id": "kurti-rania",
-    "name": "Rania Angrakha Kurti",
-    "category": "kurtis",
-    "categoryLabel": "Kurtis",
-    "fabric": "Rayon · Wrap-style with tie detail",
-    "price": 3600,
-    "badge": null,
-    "gradient": ["#5C2440", "#EE7B4D"]
-  },
-  {
-    "id": "suit-noor",
-    "name": "Noor 3-Piece Suit",
-    "category": "pakistani-suits",
-    "categoryLabel": "Pakistani Suits",
-    "fabric": "Chiffon dupatta · Embroidered shirt & trouser",
-    "price": 7900,
-    "badge": "Bestseller",
-    "gradient": ["#5C2440", "#D6357E"]
-  },
-  {
-    "id": "suit-sana",
-    "name": "Sana Chikankari Suit",
-    "category": "pakistani-suits",
-    "categoryLabel": "Pakistani Suits",
-    "fabric": "Lawn · Hand chikankari · Straight trouser",
-    "price": 6400,
-    "badge": null,
-    "gradient": ["#3A0F26", "#D6357E"]
-  },
-  {
-    "id": "suit-alishba",
-    "name": "Alishba Karandi Suit",
-    "category": "pakistani-suits",
-    "categoryLabel": "Pakistani Suits",
-    "fabric": "Winter karandi · Embroidered shawl included",
-    "price": 8500,
-    "badge": null,
-    "gradient": ["#EE7B4D", "#5C2440"]
-  },
-  {
-    "id": "lawn-meher",
-    "name": "Meher Printed Lawn (Unstitched)",
-    "category": "lawn",
-    "categoryLabel": "Lawn Collection",
-    "fabric": "3-piece · Digital print · Cotton lawn",
-    "price": 4100,
-    "badge": "Summer",
-    "gradient": ["#C79A56", "#EE7B4D"]
-  },
-  {
-    "id": "lawn-fajar",
-    "name": "Fajar Lawn Kurti Set",
-    "category": "lawn",
-    "categoryLabel": "Lawn Collection",
-    "fabric": "2-piece · Block print · Ready to wear",
-    "price": 3950,
-    "badge": null,
-    "gradient": ["#EE7B4D", "#C79A56"]
-  },
-  {
-    "id": "party-mahira",
-    "name": "Mahira Sequin Kurti",
-    "category": "party-wear",
-    "categoryLabel": "Party Wear",
-    "fabric": "Georgette · Sequin bodice · Flared hem",
-    "price": 9800,
-    "badge": "Occasion",
-    "gradient": ["#3A0F26", "#5C2440"]
-  },
-  {
-    "id": "party-aiza",
-    "name": "Aiza Velvet Suit",
-    "category": "party-wear",
-    "categoryLabel": "Party Wear",
-    "fabric": "Velvet · Zari embroidery · Winter formal",
-    "price": 12500,
-    "badge": null,
-    "gradient": ["#D6357E", "#3A0F26"]
-  },
-  {
-    "id": "bridal-rukhsar",
-    "name": "Rukhsar Walima Formal",
-    "category": "bridal",
-    "categoryLabel": "Bridal Edit",
-    "fabric": "Organza · Full zari & dabka work",
-    "price": 42000,
+    "id": "wedding-zohra",
+    "name": "Zohra Bridal Pashmina Suit",
+    "category": "wedding",
+    "categoryLabel": "Wedding Collection",
+    "fabric": "Pure pashmina · Hand embroidered panels",
+    "price": 48000,
     "badge": "Bridal",
-    "gradient": ["#C79A56", "#3A0F26"]
+    "bestseller": true,
+    "gradient": ["#3A0F26", "#0E0D10"]
   },
   {
-    "id": "bridal-farah",
-    "name": "Farah Mehndi Lehenga Set",
-    "category": "bridal",
-    "categoryLabel": "Bridal Edit",
+    "id": "wedding-noorani",
+    "name": "Noorani Wedding Lehenga",
+    "category": "wedding",
+    "categoryLabel": "Wedding Collection",
     "fabric": "Raw silk · Hand embroidery · Dupatta included",
-    "price": 38500,
+    "price": 39500,
     "badge": null,
-    "gradient": ["#5C2440", "#C79A56"]
+    "bestseller": false,
+    "gradient": ["#7A1E32", "#0E0D10"]
+  },
+  {
+    "id": "wedding-amara",
+    "name": "Amara Reception Gown",
+    "category": "wedding",
+    "categoryLabel": "Wedding Collection",
+    "fabric": "Organza · Layered flare · Hand finished hem",
+    "price": 45000,
+    "badge": "New",
+    "bestseller": false,
+    "gradient": ["#0E0D10", "#7A1E32"]
+  },
+  {
+    "id": "tilla-gulnaar",
+    "name": "Gulnaar Tilla Embroidered Suit",
+    "category": "kashmiri-tilla",
+    "categoryLabel": "Kashmiri Tilla Collection",
+    "fabric": "Pashmina blend · Traditional gold tilla work",
+    "price": 18500,
+    "badge": "Signature",
+    "bestseller": true,
+    "gradient": ["#C9A15A", "#0E0D10"]
+  },
+  {
+    "id": "tilla-meherbano",
+    "name": "Meherbano Tilla Kurti",
+    "category": "kashmiri-tilla",
+    "categoryLabel": "Kashmiri Tilla Collection",
+    "fabric": "Cotton silk · Tilla neckline & cuffs",
+    "price": 7200,
+    "badge": null,
+    "bestseller": false,
+    "gradient": ["#0E0D10", "#C9A15A"]
+  },
+  {
+    "id": "tilla-zareen",
+    "name": "Zareen Tilla Shawl Suit",
+    "category": "kashmiri-tilla",
+    "categoryLabel": "Kashmiri Tilla Collection",
+    "fabric": "Wool blend · Tilla-worked shawl included",
+    "price": 15800,
+    "badge": null,
+    "bestseller": false,
+    "gradient": ["#7A1E32", "#C9A15A"]
+  },
+  {
+    "id": "dabka-rutba",
+    "name": "Rutba Dabka Work Suit",
+    "category": "dabka-work",
+    "categoryLabel": "Dabka Work Collection",
+    "fabric": "Georgette · Hand-coiled dabka embroidery",
+    "price": 21500,
+    "badge": "Bestseller",
+    "bestseller": true,
+    "gradient": ["#0E0D10", "#3A0F26"]
+  },
+  {
+    "id": "dabka-farha",
+    "name": "Farha Dabka Kurti",
+    "category": "dabka-work",
+    "categoryLabel": "Dabka Work Collection",
+    "fabric": "Velvet · Dabka bodice · Straight cut",
+    "price": 12800,
+    "badge": null,
+    "bestseller": false,
+    "gradient": ["#C9A15A", "#3A0F26"]
+  },
+  {
+    "id": "dabka-aaliya",
+    "name": "Aaliya Dabka Party Suit",
+    "category": "dabka-work",
+    "categoryLabel": "Dabka Work Collection",
+    "fabric": "Chiffon · Dabka & sequin detailing",
+    "price": 16200,
+    "badge": "Occasion",
+    "bestseller": false,
+    "gradient": ["#3A0F26", "#C9A15A"]
   }
 ]

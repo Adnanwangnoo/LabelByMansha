@@ -14,7 +14,7 @@
   let currentFilter = 'all';
 
   function money(amount) {
-    return 'Rs ' + Number(amount).toLocaleString('en-PK');
+    return '₹' + Number(amount).toLocaleString('en-IN');
   }
 
   function cardTemplate(p) {

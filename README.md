@@ -104,17 +104,44 @@ looks like:
 ```
 
 `category` must match one of the filter button values in
-`public/collections.html` (`kurtis`, `pakistani-suits`, `lawn`,
-`party-wear`, `bridal`) unless you add a new filter button too.
+`public/collections.html` (`wedding`, `kashmiri-tilla`, `dabka-work`)
+unless you add a new filter button too. Set `"bestseller": true` on any
+product to have it also appear under the **Best Selling** filter — that
+filter pulls from `bestseller`, not from `category`, so a piece can be both
+e.g. a Wedding Collection item and a bestseller.
 No server restart needed — the file is read fresh on every request.
+
+Prices are stored as plain numbers (Indian Rupees) and formatted as ₹ on
+the frontend in `public/js/products.js`.
+
+## Theme
+
+The site uses a dark theme — near-black background, deep maroon contrast
+blocks, and an aged-gold accent (`#C9A15A`) echoing the tilla thread the
+brand works in. Colors are defined as CSS variables at the top of
+`public/css/style.css` if you want to adjust the palette.
+
+The header logo and hero both use a hand-drawn gold mandala motif
+(`public/images/mandala.svg`) as the site's signature visual element.
+
+On mobile, the site shows an app-style bottom tab bar (Home / Account /
+Shop / Wishlist / Cart) and a floating WhatsApp button — both defined in
+each page's HTML and styled in `style.css` under "Bottom mobile tab bar"
+and "WhatsApp floating button".
 
 ## Things to update before going live
 
-- Replace the placeholder phone numbers (`+920000000000`), WhatsApp link,
-  and email address across `public/*.html` with your real contact details.
+- The studio address is intentionally left as "coming soon" across the
+  site (footer, contact page) — update it in `public/index.html`,
+  `public/collections.html`, `public/about.html` and `public/contact.html`
+  once you have one to publish.
+- Replace the placeholder discount code (`MANSHA10`) in the promo strip
+  and hero banner once you decide on a real one — search for `MANSHA10`
+  across the `public/*.html` files.
 - Replace the color-block product placeholders with real product
   photography (swap the `gradient` field usage in `public/js/products.js`
-  for an `image` field once you have photos).
+  for an `image` field once you have photos), and replace the hero's
+  placeholder visual frame in `index.html` with a real lookbook photo.
 - Change `ADMIN_KEY` as described above.
 - Put this behind HTTPS (e.g. a reverse proxy like Nginx, or deploy to a
   platform that provides TLS) before collecting real customer data.

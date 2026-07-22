@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <g stroke="#C9A15A" stroke-width="1">
+    <circle cx="200" cy="200" r="190" opacity="0.5"/>
+    <circle cx="200" cy="200" r="160" opacity="0.7"/>
+    <circle cx="200" cy="200" r="120" opacity="0.9"/>
+    <circle cx="200" cy="200" r="80" opacity="0.6"/>
+  </g>
+  <g stroke="#C9A15A" stroke-width="1.1" opacity="0.85">
+    <!-- 16 petal strokes radiating from the inner ring to the outer ring -->
+    <path d="M200 40 L200 90"/>
+    <path d="M200 310 L200 360"/>
+    <path d="M40 200 L90 200"/>
+    <path d="M310 200 L360 200"/>
+    <path d="M87 87 L120 120"/>
+    <path d="M280 280 L313 313"/>
+    <path d="M313 87 L280 120"/>
+    <path d="M120 280 L87 313"/>
+    <path d="M144 47 L163 93"/>
+    <path d="M256 353 L237 307"/>
+    <path d="M47 256 L93 237"/>
+    <path d="M353 144 L307 163"/>
+    <path d="M47 144 L93 163"/>
+    <path d="M353 256 L307 237"/>
+    <path d="M144 353 L163 307"/>
+    <path d="M256 47 L237 93"/>
+  </g>
+  <g stroke="#C9A15A" stroke-width="1" opacity="0.8">
+    <!-- petal arcs between the mid and inner rings -->
+    <path d="M200 80 C 220 100, 220 140, 200 160 C 180 140, 180 100, 200 80 Z"/>
+    <path d="M200 240 C 220 260, 220 300, 200 320 C 180 300, 180 260, 200 240 Z"/>
+    <path d="M80 200 C 100 180, 140 180, 160 200 C 140 220, 100 220, 80 200 Z"/>
+    <path d="M240 200 C 260 180, 300 180, 320 200 C 300 220, 260 220, 240 200 Z"/>
+  </g>
+  <circle cx="200" cy="200" r="30" stroke="#C9A15A" stroke-width="1.2" opacity="0.9"/>
+  <circle cx="200" cy="200" r="6" fill="#C9A15A" opacity="0.9"/>
+  <g fill="#C9A15A" opacity="0.85">
+    <circle cx="200" cy="90" r="2.6"/>
+    <circle cx="200" cy="310" r="2.6"/>
+    <circle cx="90" cy="200" r="2.6"/>
+    <circle cx="310" cy="200" r="2.6"/>
+    <circle cx="126" cy="126" r="2.2"/>
+    <circle cx="274" cy="274" r="2.2"/>
+    <circle cx="274" cy="126" r="2.2"/>
+    <circle cx="126" cy="274" r="2.2"/>
+  </g>
+</svg>

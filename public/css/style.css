@@ -1392,7 +1392,7 @@ footer {
 }
 
 /* ==========================================================================
-   FINAL HERO SLIDER FIX
+   FINAL HERO SLIDER FIX (Updated for 12 Slides)
    ========================================================================== */
 
 .hero.hero-slider {
@@ -1415,20 +1415,29 @@ footer {
   background-size: cover;
   background-position: center;
   opacity: 0;
-  animation: crossfade 20s infinite;
+  animation: crossfade 60s infinite;
   z-index: 0;
 }
 
-.hero-slider .slide:nth-child(1) { animation-delay: 0s; }
-.hero-slider .slide:nth-child(2) { animation-delay: 5s; }
-.hero-slider .slide:nth-child(3) { animation-delay: 10s; }
-.hero-slider .slide:nth-child(4) { animation-delay: 15s; }
+/* 12 Slides timing sequence (5 seconds per slide over a 60s loop) */
+.hero-slider .slide:nth-child(1)  { animation-delay: 0s; }
+.hero-slider .slide:nth-child(2)  { animation-delay: 5s; }
+.hero-slider .slide:nth-child(3)  { animation-delay: 10s; }
+.hero-slider .slide:nth-child(4)  { animation-delay: 15s; }
+.hero-slider .slide:nth-child(5)  { animation-delay: 20s; }
+.hero-slider .slide:nth-child(6)  { animation-delay: 25s; }
+.hero-slider .slide:nth-child(7)  { animation-delay: 30s; }
+.hero-slider .slide:nth-child(8)  { animation-delay: 35s; }
+.hero-slider .slide:nth-child(9)  { animation-delay: 40s; }
+.hero-slider .slide:nth-child(10) { animation-delay: 45s; }
+.hero-slider .slide:nth-child(11) { animation-delay: 50s; }
+.hero-slider .slide:nth-child(12) { animation-delay: 55s; }
 
 @keyframes crossfade {
-  0% { opacity: 0; }
-  10% { opacity: 1; }
-  25% { opacity: 1; }
-  35% { opacity: 0; }
+  0%   { opacity: 0; }
+  1.5% { opacity: 1; }
+  8.3% { opacity: 1; }
+  10%  { opacity: 0; }
   100% { opacity: 0; }
 }
 

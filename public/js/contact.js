@@ -66,7 +66,7 @@
   const submitBtn = form.querySelector('button[type="submit"]');
 
   // Replace with your actual WhatsApp business phone number (include country code, no '+' or spaces)
-  const BUSINESS_PHONE = "919876543210";
+  const BUSINESS_PHONE = "916005418597";
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();

@@ -1495,3 +1495,22 @@ footer {
 .hero-slider .hero-stats div span { 
   color: rgba(251, 246, 236, 0.9); 
 }
+/* ==========================================================================
+   HIDE MANDALA WHEEL GRAPHICS
+   ========================================================================== */
+
+/* 1. Removes the wheel behind the header logo */
+.brand-mark .mandala {
+  display: none !important;
+}
+
+/* 2. Removes the large background wheel from the Hero and Page headers */
+.hero::before,
+.page-hero::before {
+  display: none !important;
+}
+
+/* 3. Removes the wheel from behind the hero visual image box */
+.hero-visual .visual-frame {
+  background: linear-gradient(160deg, #241820, #0E0D10) !important;
+}

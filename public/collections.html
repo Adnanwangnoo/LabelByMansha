@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Collections — Label by Mansha</title>
-<meta name="description" content="Browse best sellers, wedding wear, Kashmiri tilla and dabka work suits from Label by Mansha.">
+<meta name="description" content="Browse wedding wear, Kashmiri tilla and dabka work suits from Label by Mansha.">
 <link rel="icon" href="images/logo.png" type="image/png">
 <link rel="stylesheet" href="css/style.css">
+<!-- Supabase JS Client CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-
-<!-- <div class="promo-strip">Use <strong>"MANSHA10"</strong> to avail a special discount sitewide</div> -->
 
 <header class="site-header">
   <div class="wrap">
@@ -50,22 +50,15 @@
 
 <section class="page-hero">
   <div class="wrap">
-    <span class="eyebrow">The full edit</span>
-    <h1>Every piece, one place to find it.</h1>
-    <p>Filter by what the occasion calls for. Every listing ships made-to-measure — send your size chart at checkout or over WhatsApp.</p>
+    <span class="eyebrow">The Lookbook Edit</span>
+    <h1>Every piece, handcrafted with detail.</h1>
+    <p>Browse our latest designs and collections. Connect with us on WhatsApp to inquire about custom fitting or placing an order.</p>
   </div>
 </section>
 
 <section class="section-tight">
   <div class="wrap">
-    <div class="filter-row">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="bestselling">Best Selling</button>
-      <button class="filter-btn" data-filter="wedding">Wedding Collection</button>
-      <button class="filter-btn" data-filter="kashmiri-tilla">Kashmiri Tilla</button>
-      <button class="filter-btn" data-filter="dabka-work">Dabka Work</button>
-    </div>
-
+    <!-- Dynamic Product Grid -->
     <div class="product-grid" id="product-grid" aria-busy="true"></div>
   </div>
 </section>
@@ -74,10 +67,10 @@
   <div class="wrap">
     <div class="cta-band">
       <div>
-        <h2>Can't find your size in a listing?</h2>
-        <p>Every design here can be tailored to your measurements at no extra cost. Just tell us the piece name.</p>
+        <h2>Inquire About Any Design</h2>
+        <p>Every design can be tailored to your measurements at no extra cost. Connect with us to ask questions or start your order.</p>
       </div>
-      <a href="contact.html#whatsapp" class="btn btn-primary">Message your measurements</a>
+      <a href="https://wa.me/916005418597" target="_blank" rel="noopener" class="btn btn-primary">Order on WhatsApp</a>
     </div>
   </div>
 </section>
@@ -98,89 +91,26 @@
         </div>
       </div>
       <div class="footer-col">
-        <h4>Shop</h4>
-        <a href="collections.html#bestselling">Best Selling</a>
-        <a href="collections.html#wedding">Wedding Collection</a>
-        <a href="collections.html#kashmiri-tilla">Kashmiri Tilla</a>
-        <a href="collections.html#dabka-work">Dabka Work</a>
-      </div>
-      <div class="footer-col">
         <h4>Studio</h4>
         <a href="about.html">Our story</a>
-        <a href="about.html#process">How we make it</a>
         <a href="contact.html">Contact</a>
-        <a href="contact.html#faq">FAQs</a>
       </div>
       <div class="footer-col">
         <h4>Reach us</h4>
         <p>Mon–Sat, 11am–7pm</p>
         <a href="https://wa.me/916005418597" target="_blank" rel="noopener">+91 60054 18597</a>
         <a href="mailto:hello@labelbymansha.com">hello@labelbymansha.com</a>
-        <p>Address: coming soon</p>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© 2026 Label by Mansha. All rights reserved.</span>
-      <span>Designed for women who read the label.</span>
     </div>
   </div>
 </footer>
 
-<!-- Quick enquiry modal — posts to /api/enquire -->
-<div class="modal" id="enquire-modal">
-  <div class="modal-backdrop" data-close-modal></div>
-  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="enquire-title">
-    <button type="button" class="modal-close" data-close-modal aria-label="Close">&times;</button>
-    <h3 id="enquire-title">Enquire about <span id="enquire-product-name">this piece</span></h3>
-    <p class="form-note" style="margin-top: 4px; margin-bottom: 20px;">Leave your name and number — we'll message you back with sizing and availability.</p>
-    <form id="enquire-form">
-      <input type="hidden" name="productId" id="enquire-product-id">
-      <div class="form-field" style="margin-bottom: 16px;">
-        <label for="enquire-name">Your name</label>
-        <input type="text" id="enquire-name" name="name" placeholder="Your name" required>
-      </div>
-      <div class="form-field" style="margin-bottom: 20px;">
-        <label for="enquire-phone">Phone / WhatsApp</label>
-        <input type="tel" id="enquire-phone" name="phone" placeholder="+91 ..." required>
-      </div>
-      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Send enquiry</button>
-      <p class="form-note" id="enquire-status" style="margin-top: 14px;"></p>
-    </form>
-  </div>
-</div>
-
-<!-- WhatsApp floating button -->
 <a href="https://wa.me/916005418597" target="_blank" rel="noopener" class="whatsapp-fab" aria-label="Chat on WhatsApp">
   <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.36 7.56L3 20l1.06-5.4A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8.5 10.5c.3 2 2.2 3.9 4.2 4.2"/></svg>
 </a>
-
-<!-- Bottom mobile tab bar -->
-<nav class="bottom-tabbar" aria-label="Primary">
-  <ul>
-    <li><a href="index.html">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>
-      Home
-    </a></li>
-    <li><a href="contact.html">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
-      Account
-    </a></li>
-    <li><a href="collections.html" class="active">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-      Shop
-    </a></li>
-    <li><a href="collections.html#bestselling">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>
-      Wishlist
-      <span class="count">0</span>
-    </a></li>
-    <li><a href="contact.html#whatsapp">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3h2l2.4 12.4a2 2 0 0 0 2 1.6h7.2a2 2 0 0 0 2-1.6L21 8H6"/><circle cx="10" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg>
-      Cart
-      <span class="count">0</span>
-    </a></li>
-  </ul>
-</nav>
 
 <script src="js/nav.js"></script>
 <script src="js/products.js"></script>

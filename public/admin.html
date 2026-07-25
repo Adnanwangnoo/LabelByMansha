@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Portal — Label by Mansha</title>
+<link rel="icon" href="images/logo.png" type="image/png">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  .admin-container { max-width: 800px; margin: 40px auto; padding: 24px; background: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+  .admin-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; margin-top: 20px; }
+  .admin-card { position: relative; border-radius: 6px; overflow: hidden; border: 1px solid #ddd; }
+  .admin-card img { width: 100%; height: 160px; object-fit: cover; display: block; }
+  .delete-btn { width: 100%; background: #d9534f; color: white; border: none; padding: 6px; cursor: pointer; font-size: 0.8rem; }
+  .delete-btn:hover { background: #c9302c; }
+  .upload-box { background: #fafafa; border: 2px dashed #ccc; padding: 24px; text-align: center; border-radius: 6px; margin-bottom: 24px; }
+</style>
+</head>
+<body style="background: var(--blush, #fcf8f5);">
+
+<div class="admin-container">
+  <div style="text-align: center; margin-bottom: 24px;">
+    <img src="images/logo.png" alt="Label by Mansha" style="height: 50px;">
+    <h2>Gallery Management Portal</h2>
+  </div>
+
+  <!-- Login Form -->
+  <div id="login-section">
+    <h3>Client Login</h3>
+    <p style="margin-bottom: 16px; font-size: 0.9rem; color: #666;">Enter your admin email and password to upload or manage gallery images.</p>
+    <div style="margin-bottom: 12px;">
+      <input type="email" id="admin-email" placeholder="Email" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" required>
+    </div>
+    <div style="margin-bottom: 16px;">
+      <input type="password" id="admin-password" placeholder="Password" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" required>
+    </div>
+    <button onclick="handleLogin()" class="btn btn-primary" style="width: 100%; justify-content: center;">Log In</button>
+    <p id="login-error" style="color: red; font-size: 0.85rem; margin-top: 8px;"></p>
+  </div>
+
+  <!-- Admin Management Panel -->
+  <div id="admin-section" style="display: none;">
+    <div class="upload-box">
+      <h3>Upload New Lookbook Photo</h3>
+      <input type="file" id="file-input" accept="image/*" style="margin: 16px 0;">
+      <br>
+      <button onclick="handleUpload()" id="upload-btn" class="btn btn-primary">Upload Photo</button>
+      <p id="upload-status" style="margin-top: 8px; font-size: 0.85rem;"></p>
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
+
+    <h3>Manage Active Photos</h3>
+    <p style="font-size: 0.85rem; color: #666;">Clicking delete will permanently remove the photo from the main website gallery.</p>
+    <div id="admin-grid" class="admin-grid"></div>
+  </div>
+</div>
+
+<script src="js/admin.js"></script>
+</body>
+</html>

@@ -13,7 +13,7 @@
 
 :root {
   /* Backgrounds */
-  --bg: #0E0D10;              /* page canvas */
+  --bg: #0E0D10;             /* page canvas */
   --panel: #18151A;           /* card / component surface */
   --panel-raised: #211A1E;    /* contrast blocks: footer, cta band, founder note */
   --blush: #131116;           /* barely-there alternate section wash */
@@ -594,14 +594,12 @@ section { padding: 96px 0; }
   inset: 0;
   z-index: -2;
   background: var(--card-bg, var(--gradient-brand));
-  /* Scales your photo nicely without stretching or squishing */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   transition: transform 0.5s ease;
 }
 
-/* Adds a sleek, smooth zoom-in animation to the photo when hovered */
 .collection-card:hover::before {
   transform: scale(1.06);
 }
@@ -611,12 +609,11 @@ section { padding: 96px 0; }
   position: absolute;
   inset: 0;
   z-index: -1;
-  /* Top half is 100% CLEAR for crisp photos; only the bottom is darkened for text readability */
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.85) 100%);
 }
 
 .collection-card .pattern {
-  display: none; /* Hides the floral SVG overlay to keep your photos crystal clear */
+  display: none;
 }
 
 .collection-card h3 {
@@ -999,7 +996,6 @@ footer {
 
 .modal-close:hover { color: var(--gold); }
 
-/* Status text used by contact.js / products.js after an API call */
 .form-note.success { color: #6FE3A8; }
 .form-note.error {
   color: #F2A6B4;
@@ -1370,7 +1366,6 @@ footer {
   nav.main-nav.open { transform: translateY(0); }
   .nav-toggle { display: block; }
   
-  /* --- NEW SOCIAL NAV ICONS FOR MOBILE --- */
   .nav-socials { 
     margin-left: 0; 
     padding-left: 0; 
@@ -1426,7 +1421,6 @@ footer {
   z-index: 0;
 }
 
-/* 12 Slides timing sequence (5 seconds per slide over a 60s loop) */
 .hero-slider .slide:nth-child(1)  { animation-delay: 0s; }
 .hero-slider .slide:nth-child(2)  { animation-delay: 5s; }
 .hero-slider .slide:nth-child(3)  { animation-delay: 10s; }
@@ -1495,30 +1489,28 @@ footer {
 .hero-slider .hero-stats div span { 
   color: rgba(251, 246, 236, 0.9); 
 }
+
 /* ==========================================================================
    HIDE MANDALA WHEEL GRAPHICS
    ========================================================================== */
 
-/* 1. Removes the wheel behind the header logo */
 .brand-mark .mandala {
   display: none !important;
 }
 
-/* 2. Removes the large background wheel from the Hero and Page headers */
 .hero::before,
 .page-hero::before {
   display: none !important;
 }
 
-/* 3. Removes the wheel from behind the hero visual image box */
 .hero-visual .visual-frame {
   background: linear-gradient(160deg, #241820, #0E0D10) !important;
 }
-   /* ==========================================================================
+
+/* ==========================================================================
    LUXURY SEARCH OVERLAY & MODAL STYLING
    ========================================================================== */
 
-/* 1. Lifts the overlay off the bottom of the page and hides it by default */
 .search-overlay {
   position: fixed !important;
   top: 0;
@@ -1529,16 +1521,15 @@ footer {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   z-index: 99999;
-  display: none; /* Keeps it completely invisible until the search icon is clicked! */
+  display: none;
   align-items: center;
   justify-content: center;
   padding: 20px;
 }
 
-/* 2. Styles the centered popup search box */
 .search-modal-content {
   background: #141414;
-  border: 1px solid rgba(212, 175, 55, 0.25); /* Subtle luxury gold border */
+  border: 1px solid rgba(212, 175, 55, 0.25);
   border-radius: 16px;
   width: 100%;
   max-width: 580px;
@@ -1554,7 +1545,6 @@ footer {
   100% { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-/* 3. Close Button (✕) */
 .close-search-btn {
   position: absolute;
   top: 16px;
@@ -1570,7 +1560,6 @@ footer {
   color: #d4af37;
 }
 
-/* 4. Search Heading Typography */
 .search-title {
   font-family: 'Georgia', serif;
   color: #ffffff;
@@ -1580,7 +1569,6 @@ footer {
   margin-bottom: 22px;
 }
 
-/* 5. The Search Input & Button Bar */
 .search-input-wrapper {
   display: flex;
   gap: 10px;
@@ -1606,7 +1594,6 @@ footer {
   box-shadow: 0 0 12px rgba(223, 155, 82, 0.2);
 }
 
-/* Sunset Gradient Go Button */
 .search-go-btn {
   background: linear-gradient(135deg, #df9b52 0%, #cb436b 100%);
   color: white;
@@ -1624,7 +1611,6 @@ footer {
   box-shadow: 0 6px 18px rgba(203, 67, 107, 0.35);
 }
 
-/* 6. Trending Keyword Pills */
 .trending-label {
   color: #888;
   font-size: 0.8rem;
@@ -1656,11 +1642,25 @@ footer {
   border-color: transparent;
   transform: translateY(-1px);
 }
-/* --- MOBILE VIEW OVERRIDES --- */
+
+/* ==========================================================================
+   MOBILE VIEW OVERRIDES (FIXED: KEEP BRAND NAME VISIBLE)
+   ========================================================================== */
 @media (max-width: 768px) {
-  /* Add the specific classes or text elements you want hidden on phones here */
-  .hero-copy p,
-  .brand-word span {
+  /* Hide paragraph description text on mobile hero to keep it compact */
+  .hero-copy p {
     display: none !important;
+  }
+
+  /* Keep full brand name visible and scale it properly for phones */
+  .brand-word {
+    font-size: 10px !important;
+    letter-spacing: 1px !important;
+  }
+  
+  .brand-word span {
+    display: block !important; /* Ensures MANSHA stays visible on mobile */
+    font-size: 14px !important;
+    letter-spacing: 1.5px !important;
   }
 }

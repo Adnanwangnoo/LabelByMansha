@@ -11,7 +11,7 @@ const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_U
 // Store all fetched gallery files in memory for instant category switching
 let allGalleryFiles = [];
 
-/* --- 1. WHATSAPP CARD TEMPLATE --- */
+/* --- 1. WHATSAPP CARD TEMPLATE WITH SMOOTH FADE-IN --- */
 function galleryCardTemplate(imageUrl, index) {
   const messageText = `Hi! I would like to inquire about this piece from your lookbook:\n\n${imageUrl}`;
   const waUrl = `https://wa.me/916005418597?text=${encodeURIComponent(messageText)}`;
@@ -19,13 +19,13 @@ function galleryCardTemplate(imageUrl, index) {
   return `
     <a href="${waUrl}" target="_blank" rel="noopener" class="product-card" style="display: block; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-decoration: none; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;">
       <div class="product-media" style="position: relative; padding-top: 133%; background: #f7f5f2;">
-        <img src="${imageUrl}" alt="Label by Mansha Lookbook Design" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;" loading="lazy">
+        <img src="${imageUrl}" alt="Label by Mansha Lookbook Design" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; opacity: 0; transition: opacity 0.4s ease;" onload="this.style.opacity=1" loading="lazy">
       </div>
     </a>
   `;
 }
 
-/* --- 2. FETCH PHOTOS FROM SUPABASE --- */
+/* --- 2. FETCH PHOTOS FROM SUPABASE (OPTIMIZED FOR SPEED) --- */
 async function loadSupabaseGallery() {
   const grid = document.getElementById('product-grid');
   if (!grid) return;
@@ -39,11 +39,12 @@ async function loadSupabaseGallery() {
   }
 
   try {
+    // Reduced limit from 100 to 30 for faster initial load times
     const { data: files, error } = await supabaseClient
       .storage
       .from('gallery')
       .list('', {
-        limit: 100,
+        limit: 30,
         sortBy: { column: 'created_at', order: 'desc' }
       });
 
@@ -114,7 +115,7 @@ function filterGallery(selectedCategory) {
   grid.innerHTML = cardsHtml;
 }
 
-// Global helper for inline button clicks (e.g. onclick="filterCategory('wedding', this)")
+// Global helper for inline button clicks
 window.filterCategory = function(category, element) {
   if (element) {
     document.querySelectorAll('.tab-btn, .cat-btn').forEach(btn => btn.classList.remove('active'));

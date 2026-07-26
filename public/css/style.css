@@ -1656,3 +1656,11 @@ footer {
   border-color: transparent;
   transform: translateY(-1px);
 }
+/* --- MOBILE VIEW OVERRIDES --- */
+@media (max-width: 768px) {
+  /* Add the specific classes or text elements you want hidden on phones here */
+  .hero-copy p,
+  .brand-word span {
+    display: none !important;
+  }
+}

@@ -1514,4 +1514,145 @@ footer {
 .hero-visual .visual-frame {
   background: linear-gradient(160deg, #241820, #0E0D10) !important;
 }
-   
+   /* ==========================================================================
+   LUXURY SEARCH OVERLAY & MODAL STYLING
+   ========================================================================== */
+
+/* 1. Lifts the overlay off the bottom of the page and hides it by default */
+.search-overlay {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 15, 15, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 99999;
+  display: none; /* Keeps it completely invisible until the search icon is clicked! */
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* 2. Styles the centered popup search box */
+.search-modal-content {
+  background: #141414;
+  border: 1px solid rgba(212, 175, 55, 0.25); /* Subtle luxury gold border */
+  border-radius: 16px;
+  width: 100%;
+  max-width: 580px;
+  padding: 35px 30px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+  animation: popInModal 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes popInModal {
+  0% { opacity: 0; transform: scale(0.95) translateY(-15px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* 3. Close Button (✕) */
+.close-search-btn {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.close-search-btn:hover {
+  color: #d4af37;
+}
+
+/* 4. Search Heading Typography */
+.search-title {
+  font-family: 'Georgia', serif;
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: normal;
+  letter-spacing: 0.5px;
+  margin-bottom: 22px;
+}
+
+/* 5. The Search Input & Button Bar */
+.search-input-wrapper {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+#search-input {
+  flex: 1;
+  padding: 14px 22px;
+  border-radius: 50px;
+  border: 1px solid #333;
+  background: #0a0a0a;
+  color: #fff;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+#search-input::placeholder {
+  color: #666;
+}
+#search-input:focus {
+  border-color: #df9b52;
+  box-shadow: 0 0 12px rgba(223, 155, 82, 0.2);
+}
+
+/* Sunset Gradient Go Button */
+.search-go-btn {
+  background: linear-gradient(135deg, #df9b52 0%, #cb436b 100%);
+  color: white;
+  border: none;
+  padding: 0 28px;
+  border-radius: 50px;
+  font-family: 'Georgia', serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.search-go-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(203, 67, 107, 0.35);
+}
+
+/* 6. Trending Keyword Pills */
+.trending-label {
+  color: #888;
+  font-size: 0.8rem;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.keyword-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.search-tag {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid #333;
+  color: #ccc;
+  padding: 6px 16px;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.search-tag:hover {
+  background: linear-gradient(135deg, #df9b52 0%, #cb436b 100%);
+  color: #ffffff;
+  border-color: transparent;
+  transform: translateY(-1px);
+}

@@ -22,6 +22,7 @@ async function handleLogin() {
 
 async function handleUpload() {
   const fileInput = document.getElementById('file-input');
+  const categorySelect = document.getElementById('category-select'); // Grabs your selected category
   const uploadBtn = document.getElementById('upload-btn');
   const statusElement = document.getElementById('upload-status');
   const file = fileInput.files[0];
@@ -31,12 +32,16 @@ async function handleUpload() {
     return;
   }
 
+  // Defaults to kashmiri-tilla if no category dropdown is selected
+  const category = categorySelect ? categorySelect.value : 'kashmiri-tilla';
+
   uploadBtn.disabled = true;
   statusElement.style.color = '#666';
-  statusElement.textContent = 'Uploading...';
+  statusElement.textContent = 'Uploading to ' + category + '...';
 
   const fileExt = file.name.split('.').pop();
-  const uniqueName = `${Date.now()}-${Math.random().toString(36).substring(2, 7)}.${fileExt}`;
+  // Attaches the category name to the front of the file using "___" as a separator
+  const uniqueName = `${category}___${Date.now()}-${Math.random().toString(36).substring(2, 7)}.${fileExt}`;
 
   const { error } = await supabaseClient
     .storage
@@ -50,7 +55,7 @@ async function handleUpload() {
     statusElement.textContent = 'Upload failed: ' + error.message;
   } else {
     statusElement.style.color = 'green';
-    statusElement.textContent = 'Photo uploaded successfully!';
+    statusElement.textContent = 'Photo uploaded successfully to ' + category + '!';
     fileInput.value = '';
     loadAdminGallery();
   }

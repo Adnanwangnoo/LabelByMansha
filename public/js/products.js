@@ -1,413 +1,203 @@
-// // // Collections page — pulls products from the Express API instead of
-// // // hardcoding them into the HTML, and posts quick enquiries back to the API.
-// // (function () {
-// //   const API_BASE = "https://labelbymansha.onrender.com";
-// //   const grid = document.getElementById('product-grid');
-// //   const filterRow = document.querySelector('.filter-row');
-// //   if (!grid) return; // not on the collections page
+/* ==========================================================================
+   LABEL BY MANSHA — CLIENT-SIDE GALLERY, FILTERING & SEARCH CONTROLS
+   ========================================================================== */
 
-// //   const modal = document.getElementById('enquire-modal');
-// //   const modalForm = document.getElementById('enquire-form');
-// //   const modalProductName = document.getElementById('enquire-product-name');
-// //   const modalProductId = document.getElementById('enquire-product-id');
-// //   const modalStatus = document.getElementById('enquire-status');
-
-// //   let currentFilter = 'all';
-
-// //   function money(amount) {
-// //     return '₹' + Number(amount).toLocaleString('en-IN');
-// //   }
-
-// //   function cardTemplate(p) {
-// //     const [from, to] = p.gradient || ['#EE7B4D', '#D6357E'];
-// //     const badge = p.badge ? `<span class="badge">${p.badge}</span>` : '';
-// //     const productImage = p.image ? `<img src="${p.image}" alt="${p.name}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">` : '';
-// //     return `
-// //       <div class="product-card" data-cat="${p.category}">
-// //         <div class="product-media" style="--card-bg: linear-gradient(160deg, ${from}, ${to});">
-// //           ${productImage}
-// //           <img class="pattern" src="images/floral-pattern.svg" alt="" style="position: relative; z-index: 1;">
-// //           ${badge}
-// //           <span class="monogram" style="position: relative; z-index: 1;">M</span>
-// //         </div>
-// //         <div class="product-info">
-// //           <span class="cat">${p.categoryLabel}</span>
-// //           <h3>${p.name}</h3>
-// //           <p class="fabric">${p.fabric}</p>
-// //           <div class="price-row">
-// //             <span class="price">${money(p.price)}</span>
-// //             <button type="button" class="enquire" data-id="${p.id}" data-name="${p.name}">Enquire →</button>
-// //           </div>
-// //         </div>
-// //       </div>
-// //     `;
-// //   }
-
-// //   async function loadProducts(category) {
-// //     grid.setAttribute('aria-busy', 'true');
-// //     grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color: var(--plum-soft);">Loading pieces…</p>';
-// //     try {
-// //       // const url = category && category !== 'all'
-// //       //   ? `/api/products?category=${encodeURIComponent(category)}`
-// //       //   : '/api/products';
-// //       const API_BASE = "https://labelbymansha.onrender.com";
-
-// // const url = category && category !== 'all'
-// //   ? `${API_BASE}/api/products?category=${encodeURIComponent(category)}`
-// //   : `${API_BASE}/api/products`;
-// //       const res = await fetch(url);
-// //       const data = await res.json();
-
-// //       if (!data.products || !data.products.length) {
-// //         grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color: var(--plum-soft);">Nothing in this edit yet — check back soon.</p>';
-// //         return;
-// //       }
-
-// //       grid.innerHTML = data.products.map(cardTemplate).join('');
-// //       attachEnquireHandlers();
-// //     } catch (err) {
-// //       grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color: var(--rose);">Couldn\'t load the collection right now. Please refresh.</p>';
-// //       console.error(err);
-// //     } finally {
-// //       grid.removeAttribute('aria-busy');
-// //     }
-// //   }
-
-// //   function attachEnquireHandlers() {
-// //     grid.querySelectorAll('.enquire').forEach((btn) => {
-// //       btn.addEventListener('click', () => openModal(btn.dataset.id, btn.dataset.name));
-// //     });
-// //   }
-
-// //   function openModal(productId, productName) {
-// //     if (!modal) return;
-// //     modalProductName.textContent = productName;
-// //     modalProductId.value = productId;
-// //     modalForm.reset();
-// //     modalProductId.value = productId; // reset() clears hidden fields too, restore it
-// //     modalStatus.textContent = '';
-// //     modalStatus.className = 'form-note';
-// //     modal.classList.add('open');
-// //     document.body.style.overflow = 'hidden';
-// //     const firstField = modalForm.querySelector('input');
-// //     if (firstField) firstField.focus();
-// //   }
-
-// //   function closeModal() {
-// //     if (!modal) return;
-// //     modal.classList.remove('open');
-// //     document.body.style.overflow = '';
-// //   }
-
-// //   if (modal) {
-// //     modal.addEventListener('click', (e) => {
-// //       if (e.target.matches('[data-close-modal]')) closeModal();
-// //     });
-// //     document.addEventListener('keydown', (e) => {
-// //       if (e.key === 'Escape') closeModal();
-// //     });
-// //   }
-
-// //   if (modalForm) {
-// //     modalForm.addEventListener('submit', async (e) => {
-// //       e.preventDefault();
-// //       const payload = {
-// //         productId: modalProductId.value,
-// //         productName: modalProductName.textContent,
-// //         name: modalForm.querySelector('[name="name"]').value,
-// //         phone: modalForm.querySelector('[name="phone"]').value
-// //       };
-
-// //       modalStatus.textContent = 'Sending…';
-// //       modalStatus.className = 'form-note';
-
-// //       try {
-// //         // const res = await fetch('/api/enquire', {
-// //         const res = await fetch('https://labelbymansha.onrender.com/api/enquire', {
-// //           method: 'POST',
-// //           headers: { 'Content-Type': 'application/json' },
-// //           body: JSON.stringify(payload)
-// //         });
-// //         const data = await res.json();
-
-// //         if (!res.ok) {
-// //           modalStatus.textContent = data.error || 'Something went wrong. Please try again.';
-// //           modalStatus.className = 'form-note error';
-// //           return;
-// //         }
-
-// //         modalStatus.textContent = data.message;
-// //         modalStatus.className = 'form-note success';
-// //         modalForm.reset();
-// //         setTimeout(closeModal, 1800);
-// //       } catch (err) {
-// //         modalStatus.textContent = 'Network error — please check your connection and try again.';
-// //         modalStatus.className = 'form-note error';
-// //         console.error(err);
-// //       }
-// //     });
-// //   }
-
-// //   if (filterRow) {
-// //     filterRow.addEventListener('click', (e) => {
-// //       const btn = e.target.closest('.filter-btn');
-// //       if (!btn) return;
-// //       filterRow.querySelectorAll('.filter-btn').forEach((b) => b.classList.remove('active'));
-// //       btn.classList.add('active');
-// //       currentFilter = btn.dataset.filter;
-// //       loadProducts(currentFilter);
-// //     });
-// //   }
-
-// //   // Honour a category in the URL hash on load, e.g. collections.html#kurtis
-// //   const hash = window.location.hash.replace('#', '');
-// //   if (hash && filterRow) {
-// //     const target = filterRow.querySelector(`.filter-btn[data-filter="${hash}"]`);
-// //     if (target) {
-// //       target.classList.add('active');
-// //       filterRow.querySelectorAll('.filter-btn').forEach((b) => { if (b !== target) b.classList.remove('active'); });
-// //       currentFilter = hash;
-// //     }
-// //   }
-
-// //   loadProducts(currentFilter);
-// // })();
-// // Collections page — pulls products from the Express API instead of
-// // hardcoding them into the HTML, and posts quick enquiries back to the API.
-// (function () {
-//   const API_BASE = "https://labelbymansha.onrender.com";
-//   const grid = document.getElementById('product-grid');
-//   const filterRow = document.querySelector('.filter-row');
-//   if (!grid) return; // not on the collections page
-
-//   const modal = document.getElementById('enquire-modal');
-//   const modalForm = document.getElementById('enquire-form');
-//   const modalProductName = document.getElementById('enquire-product-name');
-//   const modalProductId = document.getElementById('enquire-product-id');
-//   const modalStatus = document.getElementById('enquire-status');
-
-//   let currentFilter = 'all';
-
-//   function money(amount) {
-//     return '₹' + Number(amount).toLocaleString('en-IN');
-//   }
-
-//   function cardTemplate(p) {
-//     const [from, to] = p.gradient || ['#EE7B4D', '#D6357E'];
-//     const badge = p.badge ? `<span class="badge">${p.badge}</span>` : '';
-//     const productImage = p.image ? `<img src="${p.image}" alt="${p.name}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">` : '';
-//     return `
-//       <div class="product-card" data-cat="${p.category}">
-//         <div class="product-media" style="--card-bg: linear-gradient(160deg, ${from}, ${to});">
-//           ${productImage}
-//           <img class="pattern" src="images/floral-pattern.svg" alt="" style="position: relative; z-index: 1;">
-//           ${badge}
-//           <span class="monogram" style="position: relative; z-index: 1;">M</span>
-//         </div>
-//         <div class="product-info">
-//           <span class="cat">${p.categoryLabel}</span>
-//           <h3>${p.name}</h3>
-//           <p class="fabric">${p.fabric}</p>
-//           <div class="price-row">
-//             <span class="price">${money(p.price)}</span>
-//             <button type="button" class="enquire" data-id="${p.id}" data-name="${p.name}">Enquire →</button>
-//           </div>
-//         </div>
-//       </div>
-//     `;
-//   }
-
-//   async function loadProducts(category) {
-//     grid.setAttribute('aria-busy', 'true');
-//     grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color: var(--plum-soft);">Loading pieces…</p>';
-//     try {
-//       const url = category && category !== 'all'
-//         ? `${API_BASE}/api/products?category=${encodeURIComponent(category)}`
-//         : `${API_BASE}/api/products`;
-      
-//       const res = await fetch(url);
-//       const data = await res.json();
-
-//       if (!data.products || !data.products.length) {
-//         grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color: var(--plum-soft);">Nothing in this edit yet — check back soon.</p>';
-//         return;
-//       }
-
-//       grid.innerHTML = data.products.map(cardTemplate).join('');
-//       attachEnquireHandlers();
-//     } catch (err) {
-//       grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color: var(--rose);">Couldn\'t load the collection right now. Please refresh.</p>';
-//       console.error(err);
-//     } finally {
-//       grid.removeAttribute('aria-busy');
-//     }
-//   }
-
-//   function attachEnquireHandlers() {
-//     grid.querySelectorAll('.enquire').forEach((btn) => {
-//       btn.addEventListener('click', () => openModal(btn.dataset.id, btn.dataset.name));
-//     });
-//   }
-
-//   function openModal(productId, productName) {
-//     if (!modal) return;
-//     modalProductName.textContent = productName;
-//     modalProductId.value = productId;
-//     modalForm.reset();
-//     modalProductId.value = productId; // reset() clears hidden fields too, restore it
-//     modalStatus.textContent = '';
-//     modalStatus.className = 'form-note';
-//     modal.classList.add('open');
-//     document.body.style.overflow = 'hidden';
-//     const firstField = modalForm.querySelector('input');
-//     if (firstField) firstField.focus();
-//   }
-
-//   function closeModal() {
-//     if (!modal) return;
-//     modal.classList.remove('open');
-//     document.body.style.overflow = '';
-//   }
-
-//   if (modal) {
-//     modal.addEventListener('click', (e) => {
-//       if (e.target.matches('[data-close-modal]')) closeModal();
-//     });
-//     document.addEventListener('keydown', (e) => {
-//       if (e.key === 'Escape') closeModal();
-//     });
-//   }
-
-//   if (modalForm) {
-//     modalForm.addEventListener('submit', async (e) => {
-//       e.preventDefault();
-//       const payload = {
-//         productId: modalProductId.value,
-//         productName: modalProductName.textContent,
-//         name: modalForm.querySelector('[name="name"]').value,
-//         phone: modalForm.querySelector('[name="phone"]').value
-//       };
-
-//       modalStatus.textContent = 'Sending…';
-//       modalStatus.className = 'form-note';
-
-//       try {
-//         const res = await fetch(`${API_BASE}/api/enquire`, {
-//           method: 'POST',
-//           headers: { 'Content-Type': 'application/json' },
-//           body: JSON.stringify(payload)
-//         });
-//         const data = await res.json();
-
-//         if (!res.ok) {
-//           modalStatus.textContent = data.error || 'Something went wrong. Please try again.';
-//           modalStatus.className = 'form-note error';
-//           return;
-//         }
-
-//         modalStatus.textContent = data.message;
-//         modalStatus.className = 'form-note success';
-//         modalForm.reset();
-//         setTimeout(closeModal, 1800);
-//       } catch (err) {
-//         modalStatus.textContent = 'Network error — please check your connection and try again.';
-//         modalStatus.className = 'form-note error';
-//         console.error(err);
-//       }
-//     });
-//   }
-
-//   if (filterRow) {
-//     filterRow.addEventListener('click', (e) => {
-//       const btn = e.target.closest('.filter-btn');
-//       if (!btn) return;
-//       filterRow.querySelectorAll('.filter-btn').forEach((b) => b.classList.remove('active'));
-//       btn.classList.add('active');
-//       currentFilter = btn.dataset.filter;
-//       loadProducts(currentFilter);
-//     });
-//   }
-
-//   // Honour a category in the URL hash on load, e.g. collections.html#kurtis
-//   const hash = window.location.hash.replace('#', '');
-//   if (hash && filterRow) {
-//     const target = filterRow.querySelector(`.filter-btn[data-filter="${hash}"]`);
-//     if (target) {
-//       target.classList.add('active');
-//       filterRow.querySelectorAll('.filter-btn').forEach((b) => { if (b !== target) b.classList.remove('active'); });
-//       currentFilter = hash;
-//     }
-//   }
-
-//   loadProducts(currentFilter);
-// })();
-(function () {
-  const SUPABASE_URL = "https://aogdavvqqujqxqydempu.supabase.co";
+const SUPABASE_URL = "https://aogdavvqqujqxqydempu.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_aOHNT2OAE6wSngMP_nVvrQ_SUnybrhf";
+
+// Initialize Supabase Client
+const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+
+// Store all fetched gallery files in memory for instant category switching
+let allGalleryFiles = [];
+
+/* --- 1. WHATSAPP CARD TEMPLATE --- */
+function galleryCardTemplate(imageUrl, index) {
+  const messageText = `Hi! I would like to inquire about this piece from your lookbook:\n\n${imageUrl}`;
+  const waUrl = `https://wa.me/916005418597?text=${encodeURIComponent(messageText)}`;
+
+  return `
+    <a href="${waUrl}" target="_blank" rel="noopener" class="product-card" style="display: block; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-decoration: none; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;">
+      <div class="product-media" style="position: relative; padding-top: 133%; background: #f7f5f2;">
+        <img src="${imageUrl}" alt="Label by Mansha Lookbook Design" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;" loading="lazy">
+      </div>
+    </a>
+  `;
+}
+
+/* --- 2. FETCH PHOTOS FROM SUPABASE --- */
+async function loadSupabaseGallery() {
   const grid = document.getElementById('product-grid');
   if (!grid) return;
 
-  // Initialize Supabase Client
-  const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+  grid.setAttribute('aria-busy', 'true');
+  grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color: var(--plum-soft); padding: 40px 0;">Loading collection gallery…</p>';
 
- function galleryCardTemplate(imageUrl, index) {
-    // Includes the direct image URL on a new line so WhatsApp builds a visual preview!
-    const messageText = `Hi! I would like to inquire about this piece from your lookbook:\n\n${imageUrl}`;
-    const waUrl = `https://wa.me/916005418597?text=${encodeURIComponent(messageText)}`;
-
-    return `
-      <a href="${waUrl}" target="_blank" rel="noopener" class="product-card" style="display: block; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-decoration: none; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;">
-        <div class="product-media" style="position: relative; padding-top: 133%; background: #f7f5f2;">
-          <img src="${imageUrl}" alt="Label by Mansha Lookbook Design" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;" loading="lazy">
-        </div>
-      </a>
-    `;
+  if (!supabaseClient) {
+    grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color: var(--rose);">Configuration error. Supabase library not loaded.</p>';
+    return;
   }
 
-  async function loadSupabaseGallery() {
-    grid.setAttribute('aria-busy', 'true');
-    grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color: var(--plum-soft); padding: 40px 0;">Loading collection gallery…</p>';
+  try {
+    const { data: files, error } = await supabaseClient
+      .storage
+      .from('gallery')
+      .list('', {
+        limit: 100,
+        sortBy: { column: 'created_at', order: 'desc' }
+      });
 
-    if (!supabaseClient) {
-      grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color: var(--rose);">Configuration error. Supabase library not loaded.</p>';
+    if (error) throw error;
+
+    allGalleryFiles = files.filter(f => f.name !== '.emptyFolderPlaceholder');
+
+    if (!allGalleryFiles || allGalleryFiles.length === 0) {
+      grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color: var(--plum-soft); padding: 40px 0;">No photos uploaded yet — check back soon!</p>';
       return;
     }
 
-    try {
-      // Fetch files directly from the 'gallery' bucket
-      const { data: files, error } = await supabaseClient
-        .storage
-        .from('gallery')
-        .list('', {
-          limit: 100,
-          sortBy: { column: 'created_at', order: 'desc' }
-        });
+    // Determine initial category to display (from URL Hash or Search Query)
+    const initialCategory = getInitialCategory();
+    filterGallery(initialCategory);
 
-      if (error) throw error;
+  } catch (err) {
+    console.error('Gallery loading error:', err);
+    grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color: var(--rose); padding: 40px 0;">Couldn\'t load the collection right now. Please refresh.</p>';
+  } finally {
+    grid.removeAttribute('aria-busy');
+  }
+}
 
-      const validFiles = files.filter(f => f.name !== '.emptyFolderPlaceholder');
+/* --- 3. CATEGORY FILTERING LOGIC --- */
+function filterGallery(selectedCategory) {
+  const grid = document.getElementById('product-grid');
+  if (!grid) return;
 
-      if (!validFiles || validFiles.length === 0) {
-        grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color: var(--plum-soft); padding: 40px 0;">No photos uploaded yet — check back soon!</p>';
-        return;
-      }
-
-      const cardsHtml = validFiles.map((file, idx) => {
-        const { data } = supabaseClient
-          .storage
-          .from('gallery')
-          .getPublicUrl(file.name);
-        return galleryCardTemplate(data.publicUrl, idx);
-      }).join('');
-
-      grid.innerHTML = cardsHtml;
-    } catch (err) {
-      console.error('Gallery loading error:', err);
-      grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color: var(--rose); padding: 40px 0;">Couldn\'t load the collection right now. Please refresh.</p>';
-    } finally {
-      grid.removeAttribute('aria-busy');
+  // Update button active styling on UI tabs
+  document.querySelectorAll('.tab-btn, .cat-btn').forEach(btn => {
+    btn.classList.remove('active');
+    const btnText = btn.textContent.toLowerCase();
+    const btnOnClick = btn.getAttribute('onclick') || '';
+    
+    if (btnOnClick.includes(selectedCategory) || (selectedCategory === 'all' && btnText.includes('all'))) {
+      btn.classList.add('active');
     }
+  });
+
+  // Filter photos based on category tag in file name
+  const filteredFiles = allGalleryFiles.filter(file => {
+    if (selectedCategory === 'all') return true;
+
+    if (file.name.includes('___')) {
+      const fileCat = file.name.split('___')[0];
+      return fileCat === selectedCategory;
+    } else {
+      // SMART TRICK: If an existing photo has no category prefix, treat it as 'kashmiri-tilla'
+      return selectedCategory === 'kashmiri-tilla';
+    }
+  });
+
+  if (filteredFiles.length === 0) {
+    grid.innerHTML = `<p style="grid-column: 1/-1; text-align:center; color: #888; padding: 60px 0; font-family: 'Georgia', serif; font-size: 1.1rem;">No lookbook designs in this edit yet. More pieces coming soon!</p>`;
+    return;
   }
 
-  loadSupabaseGallery();
-})();
+  // Render filtered cards
+  const cardsHtml = filteredFiles.map((file, idx) => {
+    const { data } = supabaseClient
+      .storage
+      .from('gallery')
+      .getPublicUrl(file.name);
+    return galleryCardTemplate(data.publicUrl, idx);
+  }).join('');
+
+  grid.innerHTML = cardsHtml;
+}
+
+// Global helper for inline button clicks (e.g. onclick="filterCategory('wedding', this)")
+window.filterCategory = function(category, element) {
+  if (element) {
+    document.querySelectorAll('.tab-btn, .cat-btn').forEach(btn => btn.classList.remove('active'));
+    element.classList.add('active');
+  }
+  
+  if (category === 'all') {
+    window.history.pushState("", document.title, window.location.pathname);
+  } else {
+    window.location.hash = '#' + category;
+  }
+  
+  filterGallery(category);
+};
+
+/* --- 4. CHECK URL ON LOAD (FOR HOMEPAGE CLICKS & SEARCH BAR) --- */
+function getInitialCategory() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const searchQuery = urlParams.get('search');
+
+  // Handle search bar inputs
+  if (searchQuery) {
+    const query = searchQuery.toLowerCase();
+    if (query.includes('tilla')) return 'kashmiri-tilla';
+    if (query.includes('wedding') || query.includes('bridal') || query.includes('lehenga') || query.includes('pashmina')) return 'wedding';
+    if (query.includes('dabka')) return 'dabka-work';
+    if (query.includes('best') || query.includes('selling') || query.includes('loved')) return 'bestselling';
+  }
+
+  // Handle URL hash from homepage category clicks (e.g., collections.html#wedding)
+  const hash = window.location.hash.replace('#', '').trim();
+  if (['bestselling', 'wedding', 'kashmiri-tilla', 'dabka-work'].includes(hash)) {
+    return hash;
+  }
+
+  return 'all';
+}
+
+/* --- 5. LUXURY SEARCH OVERLAY CONTROLS --- */
+function openSearch() {
+  const overlay = document.getElementById('search-overlay');
+  if (overlay) {
+    overlay.style.display = 'flex';
+    setTimeout(() => {
+      const input = document.getElementById('search-input');
+      if (input) input.focus();
+    }, 100);
+  }
+}
+
+function closeSearch() {
+  const overlay = document.getElementById('search-overlay');
+  if (overlay) overlay.style.display = 'none';
+}
+
+function selectKeyword(keyword) {
+  const input = document.getElementById('search-input');
+  if (input) {
+    input.value = keyword;
+    executeSearch();
+  }
+}
+
+function handleKeyPress(event) {
+  if (event.key === 'Enter') {
+    executeSearch();
+  }
+}
+
+function executeSearch() {
+  const input = document.getElementById('search-input');
+  if (!input) return;
+  const query = input.value.trim();
+  if (!query) return;
+  
+  window.location.href = `collections.html?search=${encodeURIComponent(query)}`;
+}
+
+// Listen for hash changes if user uses browser Back/Forward buttons
+window.addEventListener('hashchange', () => {
+  const hash = window.location.hash.replace('#', '').trim() || 'all';
+  filterGallery(hash);
+});
+
+// Initialize Gallery when DOM is ready
+window.addEventListener('DOMContentLoaded', loadSupabaseGallery);

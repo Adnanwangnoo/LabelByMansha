@@ -43,8 +43,18 @@
   <div id="admin-section" style="display: none;">
     <div class="upload-box">
       <h3>Upload New Lookbook Photo</h3>
-      <input type="file" id="file-input" accept="image/*" style="margin: 16px 0;">
-      <br>
+      
+      <!-- UPDATED: Added Category Selection Dropdown + Clean File Input Row -->
+      <div style="margin: 20px 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; align-items: center;">
+        <select id="category-select" style="padding: 10px 14px; border: 1px solid #ccc; border-radius: 6px; background: #fff; font-size: 0.95rem; cursor: pointer; outline: none;">
+          <option value="kashmiri-tilla">🪡 Kashmiri Tilla Collection</option>
+          <option value="bestselling">✨ Best Selling</option>
+          <option value="wedding">💍 Wedding Collection</option>
+          <option value="dabka-work">✨ Dabka Work Collection</option>
+        </select>
+        <input type="file" id="file-input" accept="image/*" style="padding: 6px;">
+      </div>
+
       <button onclick="handleUpload()" id="upload-btn" class="btn btn-primary">Upload Photo</button>
       <p id="upload-status" style="margin-top: 8px; font-size: 0.85rem;"></p>
     </div>

@@ -241,7 +241,7 @@
       <div class="footer-brand">
         <div class="brand" style="margin-bottom: 6px;">
           <img src="images/logo.png" alt="Label by Mansha" style="height:40px;">
-          <span class="brand-word">Mansha<span>Label by</span></span>
+          <span class="brand-word">Label by<span>Mansha</span></span>
         </div>
         <p>Wedding wear, Kashmiri tilla and dabka work, cut and finished by hand for women who notice the details.</p>
         <div class="social-row">
@@ -319,5 +319,29 @@
 </nav>
 
 <script src="js/nav.js"></script>
+<!-- --- LUXURY SEARCH OVERLAY --- -->
+<div id="search-overlay" class="search-overlay">
+  <div class="search-modal-content">
+    <button class="close-search-btn" onclick="closeSearch()">✕</button>
+    <h3 class="search-title">What are you looking for?</h3>
+    
+    <div class="search-input-wrapper">
+      <input type="text" id="search-input" placeholder="Search bridal wear, tilla, dabka..." onkeypress="handleKeyPress(event)">
+      <button class="search-go-btn" onclick="executeSearch()">Search</button>
+    </div>
+
+    <!-- Clickable Keyword Suggestions -->
+    <div class="trending-keywords">
+      <p class="trending-label">Popular Keywords:</p>
+      <div class="keyword-tags">
+        <span class="search-tag" onclick="selectKeyword('Kashmiri Tilla')">✨ Kashmiri Tilla</span>
+        <span class="search-tag" onclick="selectKeyword('Dabka Work')">✨ Dabka Work</span>
+        <span class="search-tag" onclick="selectKeyword('Bridal Wear')">✨ Bridal Wear</span>
+        <span class="search-tag" onclick="selectKeyword('Wedding Collection')">✨ Wedding Collection</span>
+        <span class="search-tag" onclick="selectKeyword('Velvet Suits')">✨ Velvet Suits</span>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>

@@ -9,13 +9,21 @@ const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_U
 // Store all fetched products in memory for instant category switching & search
 let allProducts = [];
 
-/* --- 0. INJECT BRAND-MATCHED EDITORIAL CSS (OPTIMIZED FOR DARK THEME) --- */
+/* --- 0. INJECT BRAND-MATCHED EDITORIAL CSS (WITH STRICT GRID CONSTRAINTS) --- */
 function injectEditorialStyles() {
   if (document.getElementById('editorial-card-styles')) return;
   
   const style = document.createElement('style');
   style.id = 'editorial-card-styles';
   style.innerHTML = `
+    /* Enforce Luxury Grid Spacing so single items NEVER stretch full-width! */
+    #product-grid {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+      gap: 30px !important;
+      justify-content: start;
+    }
+
     /* Clean Editorial Card Container */
     .editorial-card {
       background: transparent;
@@ -24,6 +32,9 @@ function injectEditorialStyles() {
       text-decoration: none;
       color: inherit;
       transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      max-width: 360px; /* Prevents single items from blowing up into giant banners */
+      width: 100%;
+      margin: 0 auto;
     }
     .editorial-card:hover {
       transform: translateY(-3px);
@@ -50,8 +61,11 @@ function injectEditorialStyles() {
       transform: scale(1.03);
     }
 
-    /* Swiper Override Styles */
+    /* Bulletproof Swiper Override Styles */
     .swiper { width: 100%; height: 100%; }
+    .swiper-wrapper { width: 100%; height: 100%; display: flex; }
+    .swiper-slide { width: 100%; height: 100%; flex-shrink: 0; }
+    
     .swiper-button-next, .swiper-button-prev {
       color: #ffffff !important;
       transform: scale(0.65);
@@ -149,7 +163,7 @@ function injectEditorialStyles() {
       font-weight: 600;
       letter-spacing: 1.2px;
       text-transform: uppercase;
-      color: #ffffff !important; /* Crisp White for Dark Backgrounds */
+      color: #ffffff !important;
       margin: 0;
       line-height: 1.3;
       text-shadow: 0 1px 2px rgba(0,0,0,0.5);
@@ -157,11 +171,11 @@ function injectEditorialStyles() {
     .editorial-desc {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       font-size: 0.85rem;
-      color: #cccccc !important; /* Soft Readable Cream/Grey */
+      color: #cccccc !important;
       margin: 2px 0 4px 0;
       line-height: 1.4;
       display: -webkit-box;
-      -webkit-line-clamp: 2; /* Limits description to 2 lines for symmetry */
+      -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -169,7 +183,7 @@ function injectEditorialStyles() {
     .editorial-price {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       font-size: 0.95rem;
-      color: #df9b52 !important; /* Brand Sunset Gold */
+      color: #df9b52 !important;
       font-weight: 600;
       margin: 2px 0 0 0;
       letter-spacing: 0.5px;
@@ -178,9 +192,8 @@ function injectEditorialStyles() {
   document.head.appendChild(style);
 }
 
-/* --- 1. PRODUCT CARD TEMPLATE (UPDATED ORDER: TITLE -> DESC -> PRICE) --- */
+/* --- 1. PRODUCT CARD TEMPLATE (WITH FOOLPROOF SWIPER DATA-ATTRIBUTES) --- */
 function productCardTemplate(product) {
-  // Format price with decimals (e.g., ₹34,000.00)
   const formattedPrice = Number(product.price).toLocaleString('en-IN', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2
@@ -202,7 +215,7 @@ function productCardTemplate(product) {
     });
 
     mediaSectionHtml = `
-      <div class="swiper mySwiper-${product.id}">
+      <div class="swiper" data-swiper="${product.id}">
         <div class="swiper-wrapper">${slidesHtml}</div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
@@ -214,7 +227,6 @@ function productCardTemplate(product) {
     mediaSectionHtml = `<img src="${thumb}" alt="${product.name}" loading="lazy" decoding="async">`;
   }
 
-  // Display description conditionally if it exists in the database
   const descriptionHtml = product.description 
     ? `<p class="editorial-desc" title="${product.description}">${product.description}</p>` 
     : '';
@@ -231,11 +243,10 @@ function productCardTemplate(product) {
           </svg>
         </button>
 
-        <!-- Bottom Right Plus Button (Blooms to Brand Gradient & Opens WhatsApp) -->
+        <!-- Bottom Right Plus Button -->
         <a href="${waUrl}" target="_blank" rel="noopener" class="badge-plus" aria-label="Quick Inquire on WhatsApp" title="Quick Inquire on WhatsApp">+</a>
       </div>
 
-      <!-- UPDATED ORDER: Title -> Sub-Description -> Price -->
       <div class="editorial-details">
         <h3 class="editorial-title">${product.name}</h3>
         ${descriptionHtml}
@@ -245,14 +256,13 @@ function productCardTemplate(product) {
   `;
 }
 
-// Helper: Toggle Heart Color on Click
 window.toggleHeart = function(btn) {
   btn.classList.toggle('active');
 };
 
 /* --- 2. FETCH PRODUCTS FROM SUPABASE DATABASE --- */
 async function loadSupabaseGallery() {
-  injectEditorialStyles(); // Inject custom brand styles
+  injectEditorialStyles();
   const grid = document.getElementById('product-grid');
   if (!grid) return;
 
@@ -290,7 +300,7 @@ async function loadSupabaseGallery() {
   }
 }
 
-/* --- 3. CATEGORY FILTERING LOGIC --- */
+/* --- 3. CATEGORY FILTERING & SWIPER INITIALIZATION --- */
 function filterGallery(selectedCategory) {
   const grid = document.getElementById('product-grid');
   if (!grid) return;
@@ -317,10 +327,10 @@ function filterGallery(selectedCategory) {
 
   grid.innerHTML = filteredProducts.map(product => productCardTemplate(product)).join('');
 
-  // INITIALIZE SWIPER CAROUSELS
+  // INITIALIZE SWIPER CAROUSELS SAFELY USING DATA-ATTRIBUTES
   filteredProducts.forEach(product => {
     if (product.images && product.images.length > 1 && window.Swiper) {
-      new Swiper(`.mySwiper-${product.id}`, {
+      new Swiper(`[data-swiper="${product.id}"]`, {
         pagination: { 
           el: '.swiper-pagination', 
           clickable: true,
@@ -337,7 +347,6 @@ function filterGallery(selectedCategory) {
   });
 }
 
-// Global helper for inline button clicks
 window.filterCategory = function(category, element) {
   if (element) {
     document.querySelectorAll('.tab-btn, .cat-btn').forEach(btn => btn.classList.remove('active'));
@@ -432,7 +441,7 @@ function executeSearch() {
 
     matchedProducts.forEach(product => {
       if (product.images && product.images.length > 1 && window.Swiper) {
-        new Swiper(`.mySwiper-${product.id}`, {
+        new Swiper(`[data-swiper="${product.id}"]`, {
           pagination: { el: '.swiper-pagination', clickable: true, dynamicBullets: true },
           navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
           grabCursor: true,

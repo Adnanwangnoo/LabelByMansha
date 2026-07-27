@@ -1,35 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://cdn.jsdelivr.net https://aogdavvqqujqxqydempu.supabase.co; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://aogdavvqqujqxqydempu.supabase.co; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Portal — Label by Mansha</title>
-<link rel="icon" href="images/logo.png" type="image/png">
-<link rel="stylesheet" href="css/style.css">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<style>
-  .admin-container { max-width: 800px; margin: 40px auto; padding: 24px; background: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-  .admin-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; margin-top: 20px; }
-  .admin-card { position: relative; border-radius: 6px; overflow: hidden; border: 1px solid #ddd; }
-  .admin-card img { width: 100%; height: 160px; object-fit: cover; display: block; }
-  .delete-btn { width: 100%; background: #d9534f; color: white; border: none; padding: 6px; cursor: pointer; font-size: 0.8rem; }
-  .delete-btn:hover { background: #c9302c; }
-  .upload-box { background: #fafafa; border: 2px dashed #ccc; padding: 24px; text-align: center; border-radius: 6px; margin-bottom: 24px; }
-</style>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://cdn.jsdelivr.net https://aogdavvqqujqxqydempu.supabase.co; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://aogdavvqqujqxqydempu.supabase.co; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal — Label by Mansha</title>
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+      .admin-container { max-width: 850px; margin: 40px auto; padding: 28px; background: #fff; border-radius: 10px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+      .form-group { margin-bottom: 16px; display: flex; flex-direction: column; text-align: left; }
+      .form-group label { font-weight: 600; margin-bottom: 6px; font-size: 0.9rem; color: #333; }
+      .form-group input, .form-group textarea, .form-group select { padding: 10px 14px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.95rem; outline: none; }
+      .form-group input:focus, .form-group textarea:focus { border-color: #cb436b; }
+      
+      .upload-box { background: #fafafa; border: 2px dashed #ccc; padding: 24px; text-align: center; border-radius: 8px; margin-bottom: 30px; }
+      
+      /* Inventory Grid Styling */
+      .admin-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; margin-top: 20px; }
+      .admin-card { position: relative; border-radius: 8px; overflow: hidden; border: 1px solid #eaeaea; background: #fff; display: flex; flex-direction: column; justify-content: space-between; }
+      .admin-card img { width: 100%; height: 200px; object-fit: cover; display: block; border-bottom: 1px solid #eee; }
+      .card-details { padding: 12px; text-align: left; }
+      .card-details h4 { margin: 0 0 6px 0; font-size: 1rem; color: #222; }
+      .card-details p { margin: 0; font-size: 0.85rem; color: #666; }
+      .card-price { font-weight: bold; color: #28a745; font-size: 0.95rem; margin-top: 6px !important; }
+      
+      .action-row { display: flex; border-top: 1px solid #eee; }
+      .edit-btn { flex: 1; background: #007bff; color: white; border: none; padding: 10px; cursor: pointer; font-size: 0.85rem; font-weight: bold; transition: 0.2s; }
+      .edit-btn:hover { background: #0056b3; }
+      .delete-btn { flex: 1; background: #d9534f; color: white; border: none; padding: 10px; cursor: pointer; font-size: 0.85rem; font-weight: bold; transition: 0.2s; }
+      .delete-btn:hover { background: #c9302c; }
+
+      /* Progress Bar */
+      #progress-container { display: none; margin-top: 15px; }
+      .progress-bar { width: 100%; background-color: #eee; border-radius: 6px; overflow: hidden; }
+      .progress-fill { height: 10px; background-color: #28a745; width: 0%; transition: width 0.3s; }
+      #status-text { margin-top: 8px; font-size: 0.85rem; color: #555; font-weight: bold; }
+    </style>
 </head>
 <body style="background: var(--blush, #fcf8f5);">
 
 <div class="admin-container">
   <div style="text-align: center; margin-bottom: 24px;">
     <img src="images/logo.png" alt="Label by Mansha" style="height: 50px;">
-    <h2>Gallery Management Portal</h2>
+    <h2>Inventory Management Portal</h2>
   </div>
 
   <!-- Login Form -->
   <div id="login-section">
     <h3>Client Login</h3>
-    <p style="margin-bottom: 16px; font-size: 0.9rem; color: #666;">Enter your admin email and password to upload or manage gallery images.</p>
+    <p style="margin-bottom: 16px; font-size: 0.9rem; color: #666;">Enter your admin email and password to upload or manage inventory products.</p>
     <div style="margin-bottom: 12px;">
       <input type="email" id="admin-email" placeholder="Email" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" required>
     </div>
@@ -43,27 +64,55 @@
   <!-- Admin Management Panel -->
   <div id="admin-section" style="display: none;">
     <div class="upload-box">
-      <h3>Upload New Lookbook Photo</h3>
+      <h3 id="form-title">Upload New Product</h3>
+      <p style="font-size: 0.85rem; color: #666; margin-bottom: 16px;">Photos are uploaded in raw, uncompressed quality to preserve intricate embroidery details.</p>
       
-      <!-- UPDATED: Added Category Selection Dropdown + Clean File Input Row -->
-      <div style="margin: 20px 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; align-items: center;">
-        <select id="category-select" style="padding: 10px 14px; border: 1px solid #ccc; border-radius: 6px; background: #fff; font-size: 0.95rem; cursor: pointer; outline: none;">
-          <option value="kashmiri-tilla">🪡 Kashmiri Tilla Collection</option>
-          <option value="bestselling">✨ Best Selling</option>
-          <option value="wedding">💍 Wedding Collection</option>
-          <option value="dabka-work">✨ Dabka Work Collection</option>
-        </select>
-        <input type="file" id="file-input" accept="image/*" style="padding: 6px;">
-      </div>
+      <form id="product-form" onsubmit="handleProductSubmit(event)">
+        <div class="form-group">
+          <label>Product Name</label>
+          <input type="text" id="product-name" required placeholder="e.g., Mustard Tilla Embroidered Pheran">
+        </div>
 
-      <button onclick="handleUpload()" id="upload-btn" class="btn btn-primary">Upload Photo</button>
-      <p id="upload-status" style="margin-top: 8px; font-size: 0.85rem;"></p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label>Category</label>
+            <select id="category-select" required>
+              <option value="kashmiri-tilla">🪡 Kashmiri Tilla Collection</option>
+              <option value="bestselling">✨ Best Selling</option>
+              <option value="wedding">💍 Wedding Collection</option>
+              <option value="dabka-work">✨ Dabka Work Collection</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Price (₹)</label>
+            <input type="number" id="product-price" required placeholder="34000">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Description & Fabric Details</label>
+          <textarea id="product-desc" rows="3" required placeholder="An ode to Kashmiri craftsmanship, thoughtfully handcrafted..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label id="file-label">Product Photos (Select multiple uncompressed photos)</label>
+          <input type="file" id="file-input" accept="image/*" multiple required style="padding: 6px; border: 1px dashed #ccc; background: #fff;">
+        </div>
+
+        <button type="submit" id="upload-btn" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">Upload Product</button>
+        <button type="button" id="cancel-edit-btn" onclick="resetForm()" class="btn" style="width: 100%; justify-content: center; margin-top: 8px; background: #666; color: #fff; display: none;">Cancel Edit</button>
+
+        <div id="progress-container">
+          <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+          <div id="status-text">Starting upload...</div>
+        </div>
+      </form>
     </div>
 
     <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
 
-    <h3>Manage Active Photos</h3>
-    <p style="font-size: 0.85rem; color: #666;">Clicking delete will permanently remove the photo from the main website gallery.</p>
+    <h3>Manage Active Inventory</h3>
+    <p style="font-size: 0.85rem; color: #666;">Use 'Edit' to update pricing or descriptions without re-uploading photos. Clicking 'Delete' permanently removes the item.</p>
     <div id="admin-grid" class="admin-grid"></div>
   </div>
 </div>
